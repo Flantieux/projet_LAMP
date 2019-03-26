@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Link, NavLink as RRNavLink} from 'react-router-dom';
 import React, { Component } from 'react';
-import logo from './test.svg';
+//import logo from './fond.svg';
 import './App.css';
 import {Button} from 'reactstrap';
 import Filtres from './Filtres/filtres.js';
@@ -99,7 +99,7 @@ class App extends Component {
       
 
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Accueil</NavbarBrand>
+          <NavLink tag={RRNavLink} exact to ="/App">Accueil</NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -117,8 +117,8 @@ class App extends Component {
         <Route exact path="/patients" component={() => <Pat display={[]}onSend={()=>{}}/>}/>
       <Route exact path="/filters" component={() => <Filtres display={[]}onSend={()=>{}}/>}/>
       </BrowserRouter>
-        {/*<header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        <header className="App-header">
+          {/*<img src={logo} className="App-logo" alt="logo" />
           <p>
             Hello world
           </p>
@@ -136,8 +136,8 @@ class App extends Component {
           }
           {
             //this.state.filters.map((pat) => <div>{pat.installation_date}</div>)
-          }
-        </header>*/}
+          }*/}
+        </header>
       </div>
     );
   }

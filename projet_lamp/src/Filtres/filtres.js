@@ -33,39 +33,38 @@ render() {
     return (
       <div className="App">
       <header className="App-header">
-        <Table>
+        <Table dark>
         <thead>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Id</th>
+            <th>Room</th>
+            <th>Quality</th>
+            <th>Installation Date</th>
+            <th>Model</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td>{this.state.filters.map((pat) => <div>{pat.room}</div>)}</td>
+            <td>{this.state.filters.map((pat) => <div>{pat.quality}</div>)}</td>
+            <td>{this.state.filters.map((pat) => <div>{pat.installation_date}</div>)}</td>
+            
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>Jacob</td>
+            <td>A</td>
             <td>Thornton</td>
             <td>@fat</td>
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td>Larry</td>
+            <td>A</td>
             <td>the Bird</td>
             <td>@twitter</td>
           </tr>
         </tbody>
       </Table>
-          {
-            this.state.filters.map((pat) => <div>{pat.installation_date}</div>)
-          }
         </header>
       </div>
     );
