@@ -38,6 +38,7 @@ class Pat extends Component
         <Table dark>
         <thead>
           <tr>
+            <th>#</th>
             <th>Id</th>
             <th>Firstname</th>
             <th>Lastname</th>
@@ -45,14 +46,20 @@ class Pat extends Component
             <th>Entry date</th>
             <th>Arrival date</th>
             <th>Room</th>
+            <th>Affecter à une chambre</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
+            <td>{this.state.patients.map((pat) => <div>{pat.id}</div>)}</td>
             <td>{this.state.patients.map((pat) => <div>{pat.firstname}</div>)}</td>
             <td>{this.state.patients.map((pat) => <div>{pat.lastname}</div>)}</td>
             <td>{this.state.patients.map((pat) => <div>{pat.birthday}</div>)}</td>
+            <td>{this.state.patients.map((pat) => <div>{pat.entry_date}</div>)}</td>
+            <td>{this.state.patients.map((pat) => <div>{pat.arrival_date}</div>)}</td>
+            <td>{this.state.patients.map((pat) => <div>{pat.room}</div>)}</td>
+            <td><Button color="primary" size="sm">Ajouter chambre</Button>{' '}</td>
             
           </tr>
           <tr>

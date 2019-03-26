@@ -23,33 +23,30 @@ class Filtres extends Component {
                     filters: json
                   })
                 });
-              /*.then((json) => {
-                console.log(JSON.stringify(json));
-                });*/
     }
 
 
 render() {
     return (
-      <div className="App">
-      <header className="App-header">
+      <div className="Filtres">
+      <header className="Filtres-header">
         <Table dark>
         <thead>
           <tr>
+            <th>#</th>
             <th>Id</th>
             <th>Room</th>
             <th>Quality</th>
             <th>Installation Date</th>
-            <th>Model</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
+            <td>{this.state.filters.map((pat) => <div>{pat.id}</div>)}</td>
             <td>{this.state.filters.map((pat) => <div>{pat.room}</div>)}</td>
             <td>{this.state.filters.map((pat) => <div>{pat.quality}</div>)}</td>
             <td>{this.state.filters.map((pat) => <div>{pat.installation_date}</div>)}</td>
-            
           </tr>
           <tr>
             <th scope="row">2</th>
