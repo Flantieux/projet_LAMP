@@ -1,11 +1,10 @@
-import { BrowserRouter, Route, Link} from 'react-router-dom';
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
 //import './App.css';
-import {Button} from 'reactstrap';
+import { stringify } from 'querystring';
+import { Table } from 'reactstrap';
 
-
-class Filtres extends Component {
+class Filtre_a_changer extends Component
+{
 
   constructor(props)
   {
@@ -63,9 +62,27 @@ class Filtres extends Component {
           }
         )
        }); 
+
+      // this.get_filters(
+      //   (filters) => {
+      //     this.get_rooms(
+      //       (rooms) =>  {
+
+      //       }
+      //     );
+      //   }
+      // );
   }
 
-  
+  // get_filters(callback) {
+  //   fetch("http://localhost:8000/api/v1/filters", { method: "GET" })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((filters) => {
+  //       callback(filters);
+  //     });
+  // }
     
   acheter() 
   {
@@ -107,10 +124,11 @@ update()
           };
 
 
-render() {
+  render()
+  {
     return (
-      <div className="Filtres">
-      <header className="Filtres-header">
+        <div className="filtre_a_changer">
+      <header className="filtre_a_changer-header">
         <Table dark>
         <thead>
           <tr>
@@ -124,10 +142,10 @@ render() {
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>{this.state.filters_bons.map((pat) => <div>{pat.id}</div>)}</td>
-            <td>{this.state.filters_bons.map((pat) => <div>{pat.room}</div>)}</td>
-            <td>{this.state.filters_bons.map((pat) => <div>{pat.quality}</div>)}</td>
-            <td>{this.state.filters_bons.map((pat) => <div>{pat.installation_date}</div>)}</td>
+            <td>{this.state.filters_a_changer.map((pat) => <div>{pat.id}</div>)}</td>
+            <td>{this.state.filters_a_changer.map((pat) => <div>{pat.room}</div>)}</td>
+            <td>{this.state.filters_a_changer.map((pat) => <div>{pat.quality}</div>)}</td>
+            <td>{this.state.filters_a_changer.map((pat) => <div>{pat.installation_date}</div>)}</td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -143,10 +161,10 @@ render() {
           </tr>
         </tbody>
       </Table>
-        </header>
-      </div>
+    </header>
+    </div>
     );
   }
 }
 
-export default Filtres;
+export default Filtre_a_changer;

@@ -1,35 +1,35 @@
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 //import './App.css';
-import {Button} from 'reactstrap';
+import { Button } from 'reactstrap';
 
 
 class Staff extends Component {
 
-    constructor(props) {
-      super(props);
-  
-      this.state = {
-        staff: []
-      }
-  
-      fetch( "http://localhost:8000/api/v1/staff/" , { method: "GET" })
-              .then((response) => {
-                return response.json();
-                })
-                .then((json) => {
-                  this.setState({
-                    staff: json
-                  })
-                });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      staff: []
     }
 
-    render() {
-        return (
-          <div className="Staff">
-          <header className="Staff-header">
-            <Table dark>
+    fetch("http://localhost:8000/api/v1/staff/", { method: "GET" })
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        this.setState({
+          staff: json
+        })
+      });
+  }
+
+  render() {
+    return (
+      <div className="Staff">
+        <header className="Staff-header">
+          <Table dark>
             <thead>
               <tr>
                 <th>#</th>
@@ -45,14 +45,16 @@ class Staff extends Component {
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>{this.state.staff.map((pat) => <div>{pat.id}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.firstname}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.lastname}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.function}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.wage}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.start_date}</div>)}</td>
-                <td>{this.state.staff.map((pat) => <div>{pat.end_date}</div>)}</td>
-                
+               
+                  <td>{this.state.staff.map((pat) => <div>{pat.id}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.id}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.firstname}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.lastname}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.function}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.wage}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.start_date}</div>)}</td>
+                  <td>{this.state.staff.map((pat) => <div>{pat.end_date}</div>)}</td>
+
               </tr>
               <tr>
                 <th scope="row">2</th>
@@ -68,11 +70,11 @@ class Staff extends Component {
               </tr>
             </tbody>
           </Table>
-            </header>
-          </div>
-        );
-      }
-    }
-    
-    export default Staff;
-    
+        </header>
+      </div>
+    );
+  }
+}
+
+export default Staff;
+

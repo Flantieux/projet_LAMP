@@ -1,71 +1,129 @@
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-//import './App.css';
-import {Button} from 'reactstrap';
+import { CardGroup, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import Clock from './Clock.js';
 
-class nouvFiltre extends Component {
 
-    constructor(props) {
-      super(props);
+class Acheter_filtre extends Component {
+
+  constructor(props) {
+    super(props);
+    this.updateA = this.updateA.bind(this);
+    this.acheter = this.acheter.bind(this);
+    this.updateE = this.updateE.bind(this);
+    this.embaucher = this.embaucher.bind(this);
+
+
+    this.state = {
+      filters: [],
+      staff:[]  
+   }
+
+    this.updateE();
+    this.updateA();
+    this.acheter();
+    this.embaucher();
+  }
+
+
+
+ updateA() {
+    fetch("http://localhost:8000/api/v1/filters", { method: "GET" })
+    .then((response) => {
+    return response.json();
+    })
+    .then((json) => {
+        
+      this.setState({
+        filters : json
+        
+      });
+    });
+  }
+
+  updateE() {
+    fetch("http://localhost:8000/api/v1/staff", { method: "GET" })
+    .then((response) => {
+    return response.json();
+    })
+    .then((json) => {
+        
+      this.setState({
+        staff : json
+        
+      });
+    });
+  }
   
-      this.state = {
-        filters: []
+  acheter() {
+    fetch("http://localhost:8000/api/v1/filters", { method: "POST", 
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: "model=2",
+      
+    })
+    .then((response) => {
+    return response.json();
+    })
+    .then((json) => {
+    //console.log('Buy success: ', json);  
+    this.updateA();
+        
+      });
+    }
+  
+    embaucher() {
+      fetch("http://localhost:8000/api/v1/staff", { method: "POST", 
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: "days=2",
+        
+      })
+      .then((response) => {
+      return response.json();
+      })
+      .then((json) => {
+      //console.log('Hire success: ', json);  
+      this.updateE();
+          
+        });
       }
-  
-      fetch( "http://localhost:8000/api/v1/filters/" , { method: "GET" })
-              .then((response) => {
-                return response.json();
-                })
-                .then((json) => {
-                  this.setState({
-                    filters: json
-                  })
-                });
-    }
 
-    render() {
-        return (
-          <div className="nouvFiltre">
-          <header className="nouvFiltre-header">
-            <Table bordered>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>     </th>
-                <th>Modèle 1</th>
-                <th>Modèle 2</th>
-                <th>Modèle 3</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Prix (en €)</td>
-                <td>5000</td>
-                <td>3000</td>
-                <td>1000</td>                
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Qualité initiale (%)</td>
-                <td>98.0</td>
-                <td>95.0</td>
-                <td>90.0</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Qualité perdue par jour (%)</td>
-                <td>8.0</td>
-                <td>16.0</td>
-                <td>24.0</td>
-              </tr>
-            </tbody>
-          </Table>
-            </header>
+
+  render() {
+    return (
+      <div className="Acheter_filtre">
+        <header className="Acheter_filtre-header">
+          <CardGroup>
+            <Card body inverse style={{ backgroundColor: '#0099CC', borderColor: '#0099CC' }}>
+              <CardTitle>Filtre 1</CardTitle>
+              <CardText>Ce filtre coûte 5000€. Il a une qualité initiale de 98% et perd 8% de qualité par jour.</CardText>
+              <Button>Acheter</Button>
+            </Card>
+            <Card body inverse style={{ backgroundColor: '#0066CC', borderColor: '#0066CC' }}>
+              <CardTitle>Filtre 2</CardTitle>
+              <CardText>Ce filtre coûte 3000€. Il a une qualité initiale de 95% et perd 16% de qualité par jour.</CardText>
+              <Button color="secondary" onClick={this.acheter}>Acheter</Button>
+            </Card>
+            <Card body inverse style={{ backgroundColor: '#0033CC', borderColor: '#0033CC' }}>
+              <CardTitle>Filtre 3</CardTitle>
+              <CardText>Ce filtre coûte 1000€. Il a une qualité initiale de 90% et perd 24% de qualité par jour.</CardText>
+              <Button color="secondary">Acheter</Button>
+            </Card>
+          </CardGroup>
+          <div>
+          <Card body inverse style={{backgroundColor: '#000066', borderColor: '#000066'}}>
+            <CardTitle>Embaucher vacataire</CardTitle>
+            <Button onClick={this.embaucher}>Recruter</Button>
+          </Card>
           </div>
-        );
-    }
+        </header>
+      </div>
+    );
+  }
 }
 
-    export default nouvFiltre;
+export default Acheter_filtre;
