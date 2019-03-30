@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import logo from './test.svg';
 import './App.css';
 import {Button} from 'reactstrap';
-import Clock from './Clock.js';
-import Filtres from './Filtres.js';
-import {Doughnut, Pie} from "react-chartjs"
 
 
 class App extends Component
@@ -127,19 +124,6 @@ class App extends Component
 
     
   
-                
-                
-                
-               
-                 
-                
-
-
-
-
-
-
-
 
   
   }
@@ -148,10 +132,6 @@ class App extends Component
 
   render()
   {
-    let pieOrDoughnutData = [
-      { label: "Chambres remplies", value: this.state.patients_without_room.length },
-      { label: "Chambres non remplies", value: this.state.patients_with_room.length },
-      ];
     return (
       <div className="App">
         <header className="App-header">
@@ -168,19 +148,11 @@ class App extends Component
           >
             Learn React
           </a>
-          
-          <Pie data={pieOrDoughnutData} width="400" height="300"/>
-          <Clock/>
-          <Filtres/>
           {
             //this.state.patients.map((pat) => <div>{pat.room}</div>)
             this.state.patients_without_room.map((patient) => <div>{patient.id} {patient.firstname} {patient.lastname} {patient.room} <button onClick={() => this.chambreLibre(patient.id,this.state.rooms_dispos)}>Affecter</button> </div>)
           }
-          {
-            this.state.patients_with_room.map((patient) => <div>{patient.id} {patient.firstname} {patient.lastname} {patient.room}</div>)
-          }
         </header>
-        
       </div>
     );
   }
